@@ -94,6 +94,10 @@ module.exports = (sequelize, DataTypes) => {
       beforeCreate: (user,opt) => {
         const hashedPassword = hashPassword(user.password)
         user.password = hashedPassword
+      },
+      beforeUpdate: (user,opt) => {
+        const hashedPassword = hashPassword(user.password)
+        user.password = hashedPassword
       }
     }
   });

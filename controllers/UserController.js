@@ -119,6 +119,49 @@ class UserController{
             
         }
     }
+
+    static async updateUser(req,res){
+        const {full_name, email, username,password,profil_image_url,age,phone_number}=req.body;
+        try {
+            const user = await User.update({
+                full_name,
+                email,
+                username,
+                password,
+                profil_image_url,
+                age: +age,
+                phone_number
+            }, {
+                where: {
+                    id: req.params.id
+                }
+            });
+            res.status(200).json({
+                message: "Data Berhasil di Update"
+            })
+        } catch (error) {
+            res.status(404).json({
+                message: error.message
+            })
+        }
+    }
+
+    static async deleteUser (req,res){
+        try {
+            const user = await User.destroy({
+                where: {
+                    id: req.params.id
+                }
+            })
+            res.status(200).json({
+                message: "Data Berhasil Di Hapus"
+            })
+        } catch (error) {
+            res.status(404).json({
+                message: error.message
+            })
+        }
+    }
 }
 
 module.exports = UserController
