@@ -1,0 +1,35 @@
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjAsImVtYWlsIjoiMTIzNEBnbWFpbC5jb20iLCJpYXQiOjE2NjY0MjA0NDl9.0Aq0vEzOoKQGtgymHb06lufFu1TuWAmEVNFZLmEZkh8
+
+###
+POST http://localhost:2000/users/register
+Content-Type: application/json
+
+{
+    "full_name": "Diptya Bagus Sumantry",
+    "email": "1234@gmail.com",
+    "username": "1234",
+    "password": "1234",
+    "profil_image_url": "aaaaa",
+    "age": 10,
+    "phone_number": 12   
+}
+
+###
+POST http://localhost:2000/users/login
+Content-Type: application/json
+
+{
+    "email": "1234@gmail.com",
+    "password": "1234"
+}
+
+
+###
+GET http://localhost:2000/getUser
+token: {{token}}
+
+
+//Photo
+###
+GET http://localhost:2000/photo/getPhoto
+token: {{token}}
