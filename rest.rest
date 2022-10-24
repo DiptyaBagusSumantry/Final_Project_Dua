@@ -1,4 +1,4 @@
-@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiIxMjM0QGdtYWlsLmNvbSIsImlhdCI6MTY2NjU4NTA1MX0.E-MsJ2b4TZ6NN3yLtt-ohD-ISAJ0ISnLbF7AOeOb_0s
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiIxMjM0QGdtYWlsLmNvbSIsImlhdCI6MTY2NjU5OTM4MSwiZXhwIjoxNjY2NjA2NTgxfQ.I6cDYekncqAoHeaa3aniz6-nallF25yDtkELGT38j7I
 
 //REGISTER
 ###
@@ -80,3 +80,35 @@ token: {{token}}
 ###
 DELETE http://localhost:2000/photo/deletePhoto/3
 token: {{token}}
+
+//Comment
+###
+POST  http://localhost:2000/comment/createComment
+Content-Type: application/json
+token: {{token}}
+
+{
+    "UserId": 1,
+    "PhotoId": 1,
+    "Comments": "Cekcek"
+}
+
+###
+GET http://localhost:2000/comment/get
+token: {{token}}
+
+###
+PUT http://localhost:2000/comment/updateComment/1
+Content-Type: application/json
+token: {{token}}
+
+{
+    "UserId": 1,
+    "PhotoId": 1,
+    "Comments": "okeey"
+}
+
+###
+DELETE  http://localhost:2000/comment/deleteComment/1
+token: {{token}}
+

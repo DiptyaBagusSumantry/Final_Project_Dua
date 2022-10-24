@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const authentication = require('../middlewares/authentication');
 const UserController = require('../controllers/UserController');
-const PhotoController = require('../controllers/PhotoController')
+const PhotoController = require('../controllers/PhotoController');
+const CommentController = require('../controllers/CommentController')
 
 router.post('/users/register', UserController.register);
 router.post('/users/login', UserController.login);
@@ -19,9 +20,11 @@ router.post('/photo/createPhoto', PhotoController.createPhoto);
 router.put('/photo/updatePhoto/:id', PhotoController.updatePhoto);
 router.delete('/photo/deletePhoto/:id', PhotoController.deletePhoto);
 
-
-
-
+//Comments
+router.post('/comment/createComment', CommentController.createComment);
+router.get('/comment/get', CommentController.getComment);
+router.put('/comment/updateComment/:id', CommentController.updateComment);
+router.delete('/comment/deleteComment/:id', CommentController.deleteComment)
 
 
 

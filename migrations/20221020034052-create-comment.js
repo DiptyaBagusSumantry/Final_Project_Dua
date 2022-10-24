@@ -27,7 +27,7 @@ module.exports = {
         onUpdate: "CASCADE",
         onDelete: "CASCADE" 
       },
-      Comment: {
+      Comments: {
         type: Sequelize.TEXT
       },
       createdAt: {

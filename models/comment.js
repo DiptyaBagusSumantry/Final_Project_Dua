@@ -12,12 +12,13 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       this.belongsTo(models.User);
+      this.belongsTo(models.Photo);
     }
   }
   Comment.init({
     UserId: DataTypes.INTEGER,
     PhotoId: DataTypes.INTEGER,
-    Comment: {
+    Comments: {
       type: DataTypes.TEXT,
       validate: {
       notEmpty: {

@@ -1,10 +1,12 @@
 const {Photo} = require('../models');
+const {User} = require('../models');
+const {Comment} = require ('../models');
 
 class PhotoController{
     static async createPhoto (req,res){
         const {title, caption, poster_image_url, UserId}=req.body;
         try {
-            //insert data ke user
+            //insert data ke Photo
             const user = await Photo.create({
                 title,
                 caption,
@@ -24,7 +26,21 @@ class PhotoController{
 
     static async getPhoto(req,res){
         try {
-            const photo = await Photo.findAll();
+            const photo = await Photo.findAll({
+                include: {
+                    model: Comment,
+                    attributes: ['Comments'],
+                        include: {
+                            model: User,
+                            attributes: ['id', 'username', 'profil_image_url']
+                        }
+                }
+
+                // include: {
+                //     model: User,
+                //     attributes: ['id', 'username', 'profil_image_url']
+                // }
+            });
             if(photo.length>0){
                 res.status(200).json({
                     message: "Menampilkan Data Photo",

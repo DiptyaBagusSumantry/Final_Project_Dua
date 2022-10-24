@@ -2,7 +2,11 @@ const jwt = require('jsonwebtoken');
 const SECRET_KEY = 'INIRAHASIA';
 
 function generateToken(payload){
-    const token = jwt.sign(payload, SECRET_KEY);
+    const token = jwt.sign(
+        payload, 
+        SECRET_KEY, 
+        {expiresIn: '2h'}
+        );
     return token;
 }
 
