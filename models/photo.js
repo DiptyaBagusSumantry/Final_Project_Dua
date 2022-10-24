@@ -17,20 +17,25 @@ module.exports = (sequelize, DataTypes) => {
   Photo.init({
     title: {
       type: DataTypes.STRING,
+      validate: {
       notEmpty: {
         args: true,
         msg: "Tidak Boleh Kosong"
       },
+    }
     },
     caption: {
       type: DataTypes.TEXT,
+      validate: {
       notEmpty: {
         args:  true,
         msg: "Harus di Isi"
       },
+    }
     },
     poster_image_url: {
       type: DataTypes.TEXT,
+      validate: {
       isUrl: {
         args: true,
         msg: "Harus Memasukan Link"
@@ -39,6 +44,7 @@ module.exports = (sequelize, DataTypes) => {
         args: true,
         msg: "Harus di isi"
       }
+    }
     },
 
     UserId: DataTypes.INTEGER

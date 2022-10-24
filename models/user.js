@@ -20,10 +20,12 @@ module.exports = (sequelize, DataTypes) => {
   User.init({
     full_name: {
       type: DataTypes.STRING,
+      validate: {
       notEmpty: {
         arge: true,
         msg: "Full Name Tidak Boleh Kosong"
       }
+    }
     },
     email: {
       type: DataTypes.STRING,
@@ -42,20 +44,25 @@ module.exports = (sequelize, DataTypes) => {
     username: {
       type: DataTypes.STRING,
       unique: true,
+      validate: {
       notEmpty: {
         args:true,
         msg:"Email Harus di Isi"
       },
+    }
     },
     password: {
       type : DataTypes.STRING,
+    validate: {
       notEmpty: {
         args: true,
         msg: "Password Tidak Boleh Kosong"
       },
+    }
     },
     profil_image_url: {
       type: DataTypes.TEXT,
+      validate: {
       notEmpty: {
         args: true,
         msg: "Harus Di Isi"
@@ -63,10 +70,12 @@ module.exports = (sequelize, DataTypes) => {
       isUrl: {
         args: true,
         msg: "Anda Harus Measukan Link"
-      }
+      },
+    }
     },
     age: {
       type: DataTypes.INTEGER,
+      validate: {
       notEmpty: {
         args: true,
         msg: "Umur Harus Di Isi"
@@ -75,9 +84,11 @@ module.exports = (sequelize, DataTypes) => {
         args: true,
         msg: "Anda Harus Memasukan Angka"
       },
+    }
     },
     phone_number: {
       type: DataTypes.INTEGER,
+      validate: {
       notEmpty: {
         args: true,
         msg: "Nomer Hp Harus Di isi"
@@ -85,7 +96,8 @@ module.exports = (sequelize, DataTypes) => {
      isDecimal: {
       args: true,
       msg: "Harus Berisi Angka"
-     } 
+     }
+    } 
     }
   }, {
     sequelize,

@@ -10,7 +10,7 @@ Content-Type: application/json
     "email": "1234@gmail.com",
     "username": "1234",
     "password": "1234",
-    "profil_image_url": "aaaaa",
+    "profil_image_url": "aaaaa.com",
     "age": 10,
     "phone_number": 12   
 }
@@ -40,7 +40,7 @@ token: {{token}}
     "email": "12@gmail.com",
     "username": "12",
     "password": "1234",
-    "profil_image_url": "aaaaa",
+    "profil_image_url": "aaaaa.com",
     "age": 10,
     "phone_number": 12   
 }
@@ -57,7 +57,7 @@ token: {{token}}
 {
     "title" : "PHOTO KEDUA",
     "caption": " CEKCEK",
-    "poster_image_url": "aaaa",
+    "poster_image_url": "aaaa.com",
     "UserId": 1
 }
 
@@ -73,7 +73,7 @@ token: {{token}}
 {
     "title" : "PHOTO KEDUA Sudah di Edit",
     "caption": " CEKCEK",
-    "poster_image_url": "aaaa",
+    "poster_image_url": "aaaa.com",
     "UserId": 1
 }
 

@@ -17,13 +17,16 @@ module.exports = (sequelize, DataTypes) => {
   SocialMedia.init({
     name: {
       type: DataTypes.STRING,
+      validate: {
       notEmpty: {
         args: true,
         msg: "Harus di Isi"
       },
+    }
     },
     social_media_url: {
       type: DataTypes.STRING,
+      validate: {
       isUrl: {
         args: true,
         msg: " Harus Memasukan Link"
@@ -32,6 +35,7 @@ module.exports = (sequelize, DataTypes) => {
         args: true,
         msg: "Harus di Isi"
       }
+    }
     },
     UserId: DataTypes.INTEGER
   }, {
