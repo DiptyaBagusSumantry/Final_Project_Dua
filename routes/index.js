@@ -13,7 +13,7 @@ router.use(authentication)
 
 //User
 router.get('/getUser', UserController.getUser);
-router.put('/users/update/:id', UserController.updateUser);
+router.put('/users/update/:id', authorizationUser);
 router.delete('/users/delete/:id', UserController.deleteUser);
 
 //Photo

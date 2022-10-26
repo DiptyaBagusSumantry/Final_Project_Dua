@@ -1,4 +1,4 @@
-@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiIxMjM0QGdtYWlsLmNvbSIsImlhdCI6MTY2Njc0Nzk4OSwiZXhwIjoxNjY2NzU1MTg5fQ.Yfdg4H0i95j4wVHtkhiuT1hh0J4S5Xy5GXShA3ZqMKM
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiZW1haWwiOiIxMkBnbWFpbC5jb20iLCJpYXQiOjE2NjY3NTU5NDQsImV4cCI6MTY2Njc2MzE0NH0.N6FjPA1_7U86cE4yej2x8ny87aiMdA3KtXejUKgLx2M
 
 //REGISTER
 ###
@@ -21,17 +21,18 @@ POST http://localhost:2000/users/login
 Content-Type: application/json
 
 {
-    "email": "1234@gmail.com",
+    "email": "12@gmail.com",
     "password": "1234"
 }
 
 
 ###
 GET http://localhost:2000/getUser
+Content-Type: application/json
 token: {{token}}
 
 ###
-PUT http://localhost:2000/users/update/2
+PUT http://localhost:2000/users/update/4
 Content-Type: application/json
 token: {{token}}
 
@@ -39,12 +40,12 @@ token: {{token}}
     "full_name": "Diptya Bagus Sumantry",
     "email": "12@gmail.com",
     "username": "12",
-    "profil_image_url": "aaaaa.com",
+    "profil_image_url": "profil.com",
     "age": 10,
     "phone_number": 12   
 }
 ###
-DELETE http://localhost:2000/users/delete/2
+DELETE http://localhost:2000/users/delete/5
 token: {{token}}
 
 //Photo
@@ -61,7 +62,7 @@ token: {{token}}
 }
 
 ###
-PUT http://localhost:2000/photo/getPhoto/6
+PUT http://localhost:2000/photo/getPhoto/5
 Content-Type: application/json
 token: {{token}}
 
