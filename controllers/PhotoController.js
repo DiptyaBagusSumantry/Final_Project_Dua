@@ -1,6 +1,4 @@
-const {Photo} = require('../models');
-const {User} = require('../models');
-const {Comment} = require ('../models');
+const {Photo,Comment,User} = require('../models');
 
 class PhotoController{
     static async createPhoto (req,res){
@@ -27,19 +25,17 @@ class PhotoController{
     static async getPhoto(req,res){
         try {
             const photo = await Photo.findAll({
-                include: {
+                include: [{
                     model: Comment,
                     attributes: ['Comments'],
                         include: {
                             model: User,
-                            attributes: ['id', 'username', 'profil_image_url']
+                            attributes: ['username']
                         }
-                }
-
-                // include: {
-                //     model: User,
-                //     attributes: ['id', 'username', 'profil_image_url']
-                // }
+                    }, {
+                        model: User,
+                        attributes: ['id', 'username', 'profil_image_url']
+                }]
             });
             if(photo.length>0){
                 res.status(200).json({

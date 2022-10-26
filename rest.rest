@@ -1,4 +1,4 @@
-@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiIxMjM0QGdtYWlsLmNvbSIsImlhdCI6MTY2NjU5OTM4MSwiZXhwIjoxNjY2NjA2NTgxfQ.I6cDYekncqAoHeaa3aniz6-nallF25yDtkELGT38j7I
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiIxMjM0QGdtYWlsLmNvbSIsImlhdCI6MTY2Njc0Nzk4OSwiZXhwIjoxNjY2NzU1MTg5fQ.Yfdg4H0i95j4wVHtkhiuT1hh0J4S5Xy5GXShA3ZqMKM
 
 //REGISTER
 ###
@@ -31,7 +31,7 @@ GET http://localhost:2000/getUser
 token: {{token}}
 
 ###
-PUT http://localhost:2000/users/update/1
+PUT http://localhost:2000/users/update/2
 Content-Type: application/json
 token: {{token}}
 
@@ -39,13 +39,12 @@ token: {{token}}
     "full_name": "Diptya Bagus Sumantry",
     "email": "12@gmail.com",
     "username": "12",
-    "password": "1234",
     "profil_image_url": "aaaaa.com",
     "age": 10,
     "phone_number": 12   
 }
 ###
-DELETE http://localhost:2000/users/delete/1
+DELETE http://localhost:2000/users/delete/2
 token: {{token}}
 
 //Photo
@@ -58,11 +57,12 @@ token: {{token}}
     "title" : "PHOTO KEDUA",
     "caption": " CEKCEK",
     "poster_image_url": "aaaa.com",
-    "UserId": 1
+    "UserId": 3
 }
 
 ###
-GET http://localhost:2000/photo/getPhoto
+PUT http://localhost:2000/photo/getPhoto/6
+Content-Type: application/json
 token: {{token}}
 
 ###
@@ -88,8 +88,8 @@ Content-Type: application/json
 token: {{token}}
 
 {
-    "UserId": 1,
-    "PhotoId": 1,
+    "UserId": 3,
+    "PhotoId": 5,
     "Comments": "Cekcek"
 }
 
