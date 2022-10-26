@@ -63,7 +63,7 @@ class CommentController{
         }
     }
 
-    static async deleteComment ( req,res){
+    static async deleteComment (req,res){
         try {
             const komen = await Comment.destroy({
                 where: {

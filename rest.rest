@@ -112,3 +112,33 @@ token: {{token}}
 DELETE  http://localhost:2000/comment/deleteComment/1
 token: {{token}}
 
+//Social Media
+###
+POST  http://localhost:2000/sosmed/crateSosmed
+Content-Type: application/json
+token: {{token}}
+
+{
+    "name" : "Instagram", 
+    "social_media_url": "Instagram.com", 
+    "UserId" : 4
+}
+
+###
+GET http://localhost:2000/sosmed/getSosmed
+token: {{token}}
+
+###
+PUT http://localhost:2000/sosmed/putSosmed/1
+Content-Type: application/json
+token: {{token}}
+
+{
+    "name" : "Facebook", 
+    "social_media_url": "Facebook.com", 
+    "UserId" : 4
+}
+
+###
+DELETE  http://localhost:2000/sosmed/deleteSosmed/1
+token: {{token}}
