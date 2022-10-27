@@ -25,21 +25,21 @@ class UserController{
                     message: "Username Already Registered!"
                 })
             }else{
-            //insert data ke user
-            const user = await User.create({
-                full_name,
-                email,
-                username,
-                password,
-                profil_image_url,
-                age: +age,
-                phone_number
-            })
-            res.status(201).json({
-                message: "Data User berhasil di tambahkan",
-                data: user
-            })
-        }
+                //insert data ke user
+                const user = await User.create({
+                    full_name,
+                    email,
+                    username,
+                    password,
+                    profil_image_url,
+                    age,
+                    phone_number
+                })
+                res.status(201).json({
+                    message: "Data User berhasil di tambahkan",
+                    data: user
+                })
+            }
             
         } catch (error) {
             res.status(404).json({
@@ -52,9 +52,7 @@ class UserController{
         const {email,password}= req.body;
         try {
             const user = await User.findOne({
-                where: {
-                    email
-                },
+                where: {email}
             });
 
             //check user with email
@@ -62,24 +60,24 @@ class UserController{
                 res.status(404).json({
                     message: "User Not Found"
                 })
+            }else {
+                //check password
+                const isCorrect = comparePassword(password, user.password);
+                if(!isCorrect){
+                    res.status(404).json({
+                        message: "Invalid Password"
+                    })
+                }else {
+                    const token = generateToken({
+                        id: user.id,
+                        email: user.email
+                    })
+                    res.status(200).json({token})
+                }
+                
             }
 
-            //check password
-            const isCorrect = comparePassword(password, user.password);
-            if(!isCorrect){
-                res.status(404).json({
-                    message: "Invalid Password"
-                })
-            }
 
-            const token = generateToken({
-                id: user.id,
-                email: user.email
-            })
-
-            res.status(200).json({token})
-
-            
             // if(user){
             //     const ifCorrect = comparePassword(password, user.password);
             //     if(ifCorrect){
@@ -100,11 +98,14 @@ class UserController{
 
     static async getUser(req,res){
         try {
-            const user = await User.findAll();
-            if (user.length > 0){
+            const AuthenticatedUser = res.locals.user;
+            // const user = await User.findOne({
+            //     where: {email}
+            // });
+            if (AuthenticatedUser){
                 res.status(200).json({
                     message: "Menampilkan Data User : ",
-                    data: user
+                    data: AuthenticatedUser
                 })
             }else{
                 res.status(200).json({
@@ -121,24 +122,44 @@ class UserController{
     }
 
     static async updateUser(req,res){
-        const {full_name, email, username,password,profil_image_url,age,phone_number}=req.body;
+        const {full_name, email, username,profil_image_url,age,phone_number}=req.body;
         try {
-            const user = await User.update({
-                full_name,
-                email,
-                username,
-                password,
-                profil_image_url,
-                age: +age,
-                phone_number
-            }, {
-                where: {
-                    id: req.params.id
-                }
+            //cek email sudah ada blm
+            const cekEmail = await User.findOne({
+                where: {email}
             });
-            res.status(200).json({
-                message: "Data Berhasil di Update"
-            })
+
+            //cek username sudah ada blm
+            const cekUsername = await User.findOne({
+                where: {username}
+            });
+
+            if(cekEmail){
+                res.status(404).json({
+                    message: "Email Tidak Tersedia!!"
+                })
+            }else if(cekUsername){
+                res.status(404).json({
+                    message: "Username Tidak Tersedia!"
+                })
+            }else{
+                //update data ke user
+                const user = await User.update({
+                    full_name,
+                    email,
+                    username,
+                    profil_image_url,
+                    age,
+                    phone_number
+                }, {
+                    where: {
+                        id: req.params.id
+                    }
+                });
+                res.status(200).json({
+                    message: "Data Berhasil di Update"
+                })
+            }
         } catch (error) {
             res.status(404).json({
                 message: error.message

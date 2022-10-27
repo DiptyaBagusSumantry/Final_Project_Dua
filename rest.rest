@@ -1,4 +1,4 @@
-@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiZW1haWwiOiIxMkBnbWFpbC5jb20iLCJpYXQiOjE2NjY4MzYzNzksImV4cCI6MTY2Njg0MzU3OX0.cbK2t2eql8SH9JVL8AatojMHKaWKJ5Mf3wbejZNaZAo
+@token= eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsImVtYWlsIjoidGVzQGdtYWlsLmNvbSIsImlhdCI6MTY2Njg4ODU4OSwiZXhwIjoxNjY2ODk1Nzg5fQ.sgVK6fXKO10T3m_MdKI5pAqMeHCACH20B7naihuWgEY
 
 //REGISTER
 ###
@@ -7,8 +7,8 @@ Content-Type: application/json
 
 {
     "full_name": "Diptya Bagus Sumantry",
-    "email": "1234@gmail.com",
-    "username": "1234",
+    "email": "123@gmail.com",
+    "username": "123",
     "password": "1234",
     "profil_image_url": "aaaaa.com",
     "age": 10,
@@ -21,31 +21,31 @@ POST http://localhost:2000/users/login
 Content-Type: application/json
 
 {
-    "email": "12@gmail.com",
+    "email": "tes@gmail.com",
     "password": "1234"
 }
 
 
 ###
-GET http://localhost:2000/getUser
+GET http://localhost:2000/getUser/14
 Content-Type: application/json
 token: {{token}}
 
 ###
-PUT http://localhost:2000/users/update/6
+PUT http://localhost:2000/users/update/14
 Content-Type: application/json
 token: {{token}}
 
 {
     "full_name": "Diptya Bagus Sumantry",
-    "email": "12@gmail.com",
-      "username": "12",
+    "email": "tes1@gmail.com",
+    "username": "tes1",
     "profil_image_url": "profil.com",
     "age": 10,
     "phone_number": 12   
 }
 ###
-DELETE http://localhost:2000/users/delete/5
+DELETE http://localhost:2000/users/delete/14
 token: {{token}}
 
 //Photo

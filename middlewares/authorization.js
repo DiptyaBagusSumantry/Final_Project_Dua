@@ -1,38 +1,17 @@
 const {User, Photo} =require('../models');
 
 async function authorizationUser(req, res, next) {
-    const AuthenticatedUser = res.locals.user;
-    const {full_name, email, username,password,profil_image_url,age,phone_number}=req.body;
     try {
+        const AuthenticatedUser = res.locals.user;
         const one = await User.findOne({where: {id: req.params.id}});
 
-
-        if(one.id === AuthenticatedUser.id){
-
-            const user = await User.update({
-                full_name,
-                email,
-                username,
-                password,
-                profil_image_url,
-                age: +age,
-                phone_number
-            }, {
-                where: {
-                    id: req.params.id
-                }
-            });
-
-            if(!user){
-                res.status(404).json({
-                    message: "User Not Found"
-                });
-            }
-            
-            next();
-            res.status(200).json({
-                message: "Data Berhasil di Edit",
+        if(!one){
+            return res.status(404).json({
+                message: "User Tidak Ada!"
             })
+        }
+        if(one.id === AuthenticatedUser.id){
+            next();
         }else{
             res.status(404).json({
                 message: "User dengan email tersebut tidak memiliki akses ke User tersebut"

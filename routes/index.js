@@ -12,8 +12,11 @@ router.post('/users/login', UserController.login);
 router.use(authentication)
 
 //User
-router.get('/getUser', UserController.getUser);
-router.put('/users/update/:id', authorizationUser);
+router.use('/getUser/:id', authorizationUser);
+router.get('/getUser/:id', UserController.getUser);
+router.use('/users/update/:id', authorizationUser);
+router.put('/users/update/:id', UserController.updateUser);
+router.use('/users/delete/:id', authorizationUser);
 router.delete('/users/delete/:id', UserController.deleteUser);
 
 //Photo

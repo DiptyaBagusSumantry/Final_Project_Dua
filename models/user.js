@@ -20,84 +20,119 @@ module.exports = (sequelize, DataTypes) => {
   User.init({
     full_name: {
       type: DataTypes.STRING,
+      allowNull: false,
       validate: {
-      notEmpty: {
-        arge: true,
-        msg: "Full Name Tidak Boleh Kosong"
+        notNull: {
+          args:true,
+          msg:"Data Tidak Boleh Kosong(Null)!"
+        },
+        notEmpty: {
+          arge: true,
+          msg: "Full Name Tidak Boleh Kosong"
+        }
       }
-    }
     },
     email: {
       type: DataTypes.STRING,
       unique: true,
+      allowNull: false,
       validate: {
-        isEmail: {
+        notNull: {
           args:true,
-          msg:"Email Format Salah"
+          msg:"Data Tidak Boleh Kosong(Null)!"
         },
         notEmpty: {
           args:true,
-          msg:"Email Harus di Isi"
+          msg:"Email Tidak Boleh Kosong"
+        },
+        isEmail: {
+          args:true,
+          msg:"Email Format Salah"
         },
       },      
     },
     username: {
       type: DataTypes.STRING,
+      allowNull: false,
       unique: true,
       validate: {
-      notEmpty: {
-        args:true,
-        msg:"Email Harus di Isi"
-      },
-    }
+        notNull: {
+          args:true,
+          msg:"Data Tidak Boleh Kosong(Null)!"
+        },
+        notEmpty: {
+          args:true,
+          msg:"Username Tidak Boleh Kosong"
+        },
+      }
     },
     password: {
       type : DataTypes.STRING,
-    validate: {
-      notEmpty: {
-        args: true,
-        msg: "Password Tidak Boleh Kosong"
-      },
-    }
+      allowNull: false,
+      validate: {
+        notNull: {
+          args:true,
+          msg:"Data Tidak Boleh Kosong(Null)!"
+        },
+        notEmpty: {
+          args:true,
+          msg:"Password Tidak Boleh Kosong"
+        },
+      }
     },
     profil_image_url: {
       type: DataTypes.TEXT,
+      allowNull: false,
       validate: {
-      notEmpty: {
-        args: true,
-        msg: "Harus Di Isi"
-      },
-      isUrl: {
-        args: true,
-        msg: "Anda Harus Measukan Link"
-      },
-    }
+        notNull: {
+          args:true,
+          msg:"Data Tidak Boleh Kosong(Null)!"
+        },
+        notEmpty: {
+          args:true,
+          msg:"Profil Url Tidak Boleh Kosong"
+        },
+        isUrl: {
+          args: true,
+          msg: "Link tidak Valid!"
+        },
+      }
     },
     age: {
       type: DataTypes.INTEGER,
+      allowNull: false,
       validate: {
-      notEmpty: {
-        args: true,
-        msg: "Umur Harus Di Isi"
-      },
-      isDecimal: {
-        args: true,
-        msg: "Anda Harus Memasukan Angka"
-      },
-    }
+        notNull: {
+          args:true,
+          msg:"Data Tidak Boleh Kosong(Null)!"
+        },
+        notEmpty: {
+          args:true,
+          msg:"Usia Tidak Boleh Kosong"
+        },
+        isInt: {
+          args: true,
+          msg: "Anda Harus Memasukan Angka"
+        },
+      }
     },
     phone_number: {
       type: DataTypes.INTEGER,
+      allowNull: false,
       validate: {
-      notEmpty: {
-        args: true,
-        msg: "Nomer Hp Harus Di isi"
-      },
-     isDecimal: {
-      args: true,
-      msg: "Harus Berisi Angka"
-     }
-    } 
+        notNull: {
+          args:true,
+          msg:"Data Tidak Boleh Kosong(Null)!"
+        },
+        notEmpty: {
+          args:true,
+          msg:"Nomor Telepon Tidak Boleh Kosong"
+        },
+        isInt: {
+          args: true,
+          msg: "Anda Harus Memasukan Angka"
+        },
+      }
     }
   }, {
     sequelize,

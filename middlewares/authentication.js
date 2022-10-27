@@ -17,7 +17,7 @@ async function authentication(req,res,next){
             if(!user){
                 res.status(404).json({
                     name: "Authenticaton Error",
-                    devMessage: `User with email ${userDecoded.id} NOT FOUND `
+                    devMessage: `User with id ${userDecoded.id} and email ${userDecoded.email} NOT FOUND `
                 });
             }
             res.locals.user = user;
