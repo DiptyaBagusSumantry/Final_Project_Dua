@@ -2,18 +2,18 @@ const {Photo,Comment,User} = require('../models');
 
 class PhotoController{
     static async createPhoto (req,res){
-        const {title, caption, poster_image_url, UserId}=req.body;
+        const {title, caption, poster_image_url}=req.body;
         try {
             //insert data ke Photo
-            const user = await Photo.create({
+            const photo = await Photo.create({
                 title,
                 caption,
                 poster_image_url,
-                UserId
+                UserId: res.locals.user.id
             })
             res.status(201).json({
                 message: "Data User berhasil di tambahkan",
-                data: user
+                data: photo
             }) 
         } catch (error) {
             res.status(404).json({
@@ -56,20 +56,28 @@ class PhotoController{
     }
 
     static async updatePhoto (req,res){
-        const {title, caption, poster_image_url, UserId}=req.body;
+        const {title, caption, poster_image_url}=req.body;
         try {
-            const user = await Photo.update({
+            //update photo
+            const update = await Photo.update({
                 title,
                 caption,
                 poster_image_url,
-                UserId
+                UserId : res.locals.user.id
             }, {
                 where: {
                     id: req.params.id
                 }
             });
+            // get updated data photo
+            const get = await Photo.findOne({
+                where: {
+                    id: req.params.id
+                }
+            })
             res.status(200).json({
-                message: "Data Berhasil di Update"
+                message: "Data Berhasil di Update",
+                photo: get
             })
         } catch (error) {
             res.status(404).json({
@@ -80,7 +88,7 @@ class PhotoController{
 
     static async deletePhoto (req,res){
         try {
-            const user = await Photo.destroy({
+            const photo = await Photo.destroy({
                 where: {
                     id: req.params.id
                 }

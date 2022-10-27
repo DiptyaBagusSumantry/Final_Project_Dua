@@ -1,4 +1,5 @@
 const {User} = require('../models');
+const { Op } = require("sequelize");
 const { comparePassword } = require('../helpers/bcrypt');
 const {generateToken} = require('../helpers/jwt')
 
@@ -37,7 +38,7 @@ class UserController{
                 })
                 res.status(201).json({
                     message: "Data User berhasil di tambahkan",
-                    data: user
+                    user: {email, full_name, username, profil_image_url, age, phone_number}
                 })
             }
             
@@ -76,19 +77,6 @@ class UserController{
                 }
                 
             }
-
-
-            // if(user){
-            //     const ifCorrect = comparePassword(password, user.password);
-            //     if(ifCorrect){
-            //         const token = generateToken({});
-            //         res.status(200).json({token});
-            //     }else{
-            //         res.status(404).json({message: "password salah"})
-            //     }
-            // }else{
-            //     res.status(404).json({message: `User dengan email:  ${email} tidak ada`})
-            // }
         } catch (error) {
             res.status(404).json({
                 message: error.message
@@ -99,9 +87,7 @@ class UserController{
     static async getUser(req,res){
         try {
             const AuthenticatedUser = res.locals.user;
-            // const user = await User.findOne({
-            //     where: {email}
-            // });
+
             if (AuthenticatedUser){
                 res.status(200).json({
                     message: "Menampilkan Data User : ",
@@ -124,16 +110,22 @@ class UserController{
     static async updateUser(req,res){
         const {full_name, email, username,profil_image_url,age,phone_number}=req.body;
         try {
-            //cek email sudah ada blm
+            const getId = res.locals.user.id;
+            // cek email sudah ada blm
             const cekEmail = await User.findOne({
-                where: {email}
+                where: {
+                    id : {[Op.ne]: getId},
+                    email
+                }
             });
-
+            
             //cek username sudah ada blm
             const cekUsername = await User.findOne({
-                where: {username}
+                where: {
+                    id : {[Op.ne]: getId},
+                    username
+                }
             });
-
             if(cekEmail){
                 res.status(404).json({
                     message: "Email Tidak Tersedia!!"
@@ -143,7 +135,7 @@ class UserController{
                     message: "Username Tidak Tersedia!"
                 })
             }else{
-                //update data ke user
+                // update data ke user
                 const user = await User.update({
                     full_name,
                     email,
@@ -157,7 +149,8 @@ class UserController{
                     }
                 });
                 res.status(200).json({
-                    message: "Data Berhasil di Update"
+                    message: "Data Berhasil di Update",
+                    user: {email, full_name, username, profil_image_url, age, phone_number}
                 })
             }
         } catch (error) {
@@ -175,7 +168,7 @@ class UserController{
                 }
             })
             res.status(200).json({
-                message: "Data Berhasil Di Hapus"
+                message: "Akun Anda Berhasil Di Hapus"
             })
         } catch (error) {
             res.status(404).json({

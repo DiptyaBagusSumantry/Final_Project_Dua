@@ -1,5 +1,5 @@
-@token= eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsImVtYWlsIjoidGVzQGdtYWlsLmNvbSIsImlhdCI6MTY2Njg4ODU4OSwiZXhwIjoxNjY2ODk1Nzg5fQ.sgVK6fXKO10T3m_MdKI5pAqMeHCACH20B7naihuWgEY
-
+@token= eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImVtYWlsIjoidGVzM0BnbWFpbC5jb20iLCJpYXQiOjE2NjY5MTA4NjYsImV4cCI6MTY2NjkxODA2Nn0.j0jwDDNBMzedI9vILaJaXipiVxEcwAGAyYvpgRfYMGk
+# @token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTUsImVtYWlsIjoiMTIzQGdtYWlsLmNvbSIsImlhdCI6MTY2NjkwNDczOCwiZXhwIjoxNjY2OTExOTM4fQ.uvkU1q41irZAhVR1wI5dlTe16BM46k7WDCb87lsQyH4
 //REGISTER
 ###
 POST http://localhost:2000/users/register
@@ -7,8 +7,8 @@ Content-Type: application/json
 
 {
     "full_name": "Diptya Bagus Sumantry",
-    "email": "123@gmail.com",
-    "username": "123",
+    "email": "tes123@gmail.com",
+    "username": "tes123",
     "password": "1234",
     "profil_image_url": "aaaaa.com",
     "age": 10,
@@ -21,25 +21,26 @@ POST http://localhost:2000/users/login
 Content-Type: application/json
 
 {
-    "email": "tes@gmail.com",
+    "email": "tes3@gmail.com",
     "password": "1234"
 }
 
 
 ###
-GET http://localhost:2000/getUser/14
+# FOR CHECKING ACCOUNT THAT LOGGED IN
+GET http://localhost:2000/getUser
 Content-Type: application/json
 token: {{token}}
 
 ###
-PUT http://localhost:2000/users/update/14
+PUT http://localhost:2000/users/update/16
 Content-Type: application/json
 token: {{token}}
 
 {
-    "full_name": "Diptya Bagus Sumantry",
-    "email": "tes1@gmail.com",
-    "username": "tes1",
+    "email": "tes3@gmail.com",
+    "full_name": "Diptyaaaaaaaaa Baguss Sumantry",
+    "username": "tes23",
     "profil_image_url": "profil.com",
     "age": 10,
     "phone_number": 12   
@@ -57,12 +58,11 @@ token: {{token}}
 {
     "title" : "PHOTO KEDUA",
     "caption": " CEKCEK",
-    "poster_image_url": "aaaa.com",
-    "UserId": 3
+    "poster_image_url": "aaaa.com"
 }
 
 ###
-PUT http://localhost:2000/photo/getPhoto/5
+GET http://localhost:2000/photo/getPhoto
 Content-Type: application/json
 token: {{token}}
 
@@ -72,14 +72,13 @@ Content-Type: application/json
 token: {{token}}
 
 {
-    "title" : "PHOTO KEDUA Sudah di Edit",
+    "title" : "PHOTO KEDUA",
     "caption": " CEKCEK",
-    "poster_image_url": "aaaa.com",
-    "UserId": 1
+    "poster_image_url": "aaaa.com"
 }
 
 ###
-DELETE http://localhost:2000/photo/deletePhoto/3
+DELETE http://localhost:2000/photo/deletePhoto/2
 token: {{token}}
 
 //Comment
@@ -89,40 +88,36 @@ Content-Type: application/json
 token: {{token}}
 
 {
-    "UserId": 3,
-    "PhotoId": 5,
-    "Comments": "Cekcek"
+    "PhotoId": 1,
+    "Comments": "Cekcek ID 15 NIH"
 }
 
 ###
-GET http://localhost:2000/comment/get
+GET http://localhost:2000/comment/getComment
 token: {{token}}
 
 ###
-PUT http://localhost:2000/comment/updateComment/1
+PUT http://localhost:2000/comment/updateComment/14
 Content-Type: application/json
 token: {{token}}
 
 {
-    "UserId": 1,
-    "PhotoId": 1,
-    "Comments": "okeey"
+    "Comments": "Edited"
 }
 
 ###
-DELETE  http://localhost:2000/comment/deleteComment/1
+DELETE  http://localhost:2000/comment/deleteComment/15
 token: {{token}}
 
 //Social Media
 ###
-POST  http://localhost:2000/sosmed/crateSosmed
+POST  http://localhost:2000/sosmed/createSosmed
 Content-Type: application/json
 token: {{token}}
 
 {
-    "name" : "Instagram", 
-    "social_media_url": "Instagram.com", 
-    "UserId" : 4
+    "name" : "123", 
+    "social_media_url": "Instagram.com"
 }
 
 ###
@@ -136,8 +131,7 @@ token: {{token}}
 
 {
     "name" : "Facebook", 
-    "social_media_url": "Facebook.com", 
-    "UserId" : 4
+    "social_media_url": "Facebook.com"
 }
 
 ###
