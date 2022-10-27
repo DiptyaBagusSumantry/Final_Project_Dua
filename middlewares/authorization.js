@@ -5,26 +5,30 @@ async function authorizationUser(req, res, next) {
     const {full_name, email, username,password,profil_image_url,age,phone_number}=req.body;
     try {
         const one = await User.findOne({where: {id: req.params.id}});
-        const user = await User.update({
-            full_name,
-            email,
-            username,
-            password,
-            profil_image_url,
-            age: +age,
-            phone_number
-        }, {
-            where: {
-                id: req.params.id
-            }
-        });
-        if(!user){
-            res.status(404).json({
-                message: "User Not Found"
-            });
-        }
+
 
         if(one.id === AuthenticatedUser.id){
+
+            const user = await User.update({
+                full_name,
+                email,
+                username,
+                password,
+                profil_image_url,
+                age: +age,
+                phone_number
+            }, {
+                where: {
+                    id: req.params.id
+                }
+            });
+
+            if(!user){
+                res.status(404).json({
+                    message: "User Not Found"
+                });
+            }
+            
             next();
             res.status(200).json({
                 message: "Data Berhasil di Edit",

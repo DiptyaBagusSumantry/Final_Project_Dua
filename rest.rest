@@ -1,4 +1,4 @@
-@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiZW1haWwiOiIxMkBnbWFpbC5jb20iLCJpYXQiOjE2NjY3NTU5NDQsImV4cCI6MTY2Njc2MzE0NH0.N6FjPA1_7U86cE4yej2x8ny87aiMdA3KtXejUKgLx2M
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiZW1haWwiOiIxMkBnbWFpbC5jb20iLCJpYXQiOjE2NjY4MzYzNzksImV4cCI6MTY2Njg0MzU3OX0.cbK2t2eql8SH9JVL8AatojMHKaWKJ5Mf3wbejZNaZAo
 
 //REGISTER
 ###
@@ -32,14 +32,14 @@ Content-Type: application/json
 token: {{token}}
 
 ###
-PUT http://localhost:2000/users/update/4
+PUT http://localhost:2000/users/update/6
 Content-Type: application/json
 token: {{token}}
 
 {
     "full_name": "Diptya Bagus Sumantry",
     "email": "12@gmail.com",
-    "username": "12",
+      "username": "12",
     "profil_image_url": "profil.com",
     "age": 10,
     "phone_number": 12   
