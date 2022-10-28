@@ -12,7 +12,6 @@ class PhotoController{
                 UserId: res.locals.user.id
             })
             res.status(201).json({
-                message: "Data User berhasil di tambahkan",
                 data: photo
             }) 
         } catch (error) {
@@ -39,7 +38,6 @@ class PhotoController{
             });
             if(photo.length>0){
                 res.status(200).json({
-                    message: "Menampilkan Data Photo",
                     data: photo
                 })
             }else{
@@ -76,7 +74,6 @@ class PhotoController{
                 }
             })
             res.status(200).json({
-                message: "Data Berhasil di Update",
                 photo: get
             })
         } catch (error) {
@@ -94,7 +91,7 @@ class PhotoController{
                 }
             })
             res.status(200).json({
-                message: "Data Berhasil Di Hapus"
+                message: "Photo Berhasil Di Hapus"
             })
         } catch (error) {
             res.status(404).json({

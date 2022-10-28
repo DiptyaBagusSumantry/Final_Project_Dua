@@ -1,18 +1,18 @@
-@token= eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImVtYWlsIjoidGVzM0BnbWFpbC5jb20iLCJpYXQiOjE2NjY5MTA4NjYsImV4cCI6MTY2NjkxODA2Nn0.j0jwDDNBMzedI9vILaJaXipiVxEcwAGAyYvpgRfYMGk
-# @token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTUsImVtYWlsIjoiMTIzQGdtYWlsLmNvbSIsImlhdCI6MTY2NjkwNDczOCwiZXhwIjoxNjY2OTExOTM4fQ.uvkU1q41irZAhVR1wI5dlTe16BM46k7WDCb87lsQyH4
+@token= eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImVtYWlsIjoidGVzM0BnbWFpbC5jb20iLCJpYXQiOjE2NjY5NDE3NjksImV4cCI6MTY2Njk0ODk2OX0.v7Lwj1jNvSPqkqeD9G2XtLIjT1XRVcI3hHi4TDm-CqI
+
 //REGISTER
 ###
 POST http://localhost:2000/users/register
 Content-Type: application/json
 
 {
-    "full_name": "Diptya Bagus Sumantry",
-    "email": "tes123@gmail.com",
-    "username": "tes123",
+    "full_name": "Muhammad Nauval Saiholau",
+    "email": "nauval@gmail.com",
+    "username": "nauval",
     "password": "1234",
-    "profil_image_url": "aaaaa.com",
-    "age": 10,
-    "phone_number": 12   
+    "profil_image_url": "photo.com",
+    "age": 20,
+    "phone_number": 6289501358797
 }
 
 //LOGIN
@@ -21,7 +21,7 @@ POST http://localhost:2000/users/login
 Content-Type: application/json
 
 {
-    "email": "tes3@gmail.com",
+    "email": "nauval@gmail.com",
     "password": "1234"
 }
 
@@ -33,20 +33,20 @@ Content-Type: application/json
 token: {{token}}
 
 ###
-PUT http://localhost:2000/users/update/16
+PUT http://localhost:2000/users/update/24
 Content-Type: application/json
 token: {{token}}
 
 {
-    "email": "tes3@gmail.com",
-    "full_name": "Diptyaaaaaaaaa Baguss Sumantry",
-    "username": "tes23",
+    "email": "nauval@gmail.com",
+    "full_name": "Nauval Edited",
+    "username": "NauvalEdited",
     "profil_image_url": "profil.com",
-    "age": 10,
-    "phone_number": 12   
+    "age": 20,
+    "phone_number": 6289501358797   
 }
 ###
-DELETE http://localhost:2000/users/delete/14
+DELETE http://localhost:2000/users/delete/24
 token: {{token}}
 
 //Photo
