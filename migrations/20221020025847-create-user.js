@@ -29,7 +29,7 @@ module.exports = {
       },
       profil_image_url: {
         allowNull: false,
-        type: Sequelize.TEXT
+        type: Sequelize.STRING
       },
       age: {
         allowNull: false,
