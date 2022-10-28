@@ -1,4 +1,5 @@
 const {User} = require('../models');
+const { Op } = require("sequelize");
 const { comparePassword } = require('../helpers/bcrypt');
 const {generateToken} = require('../helpers/jwt')
 
@@ -25,21 +26,21 @@ class UserController{
                     message: "Username Already Registered!"
                 })
             }else{
-            //insert data ke user
-            const user = await User.create({
-                full_name,
-                email,
-                username,
-                password,
-                profil_image_url,
-                age: +age,
-                phone_number
-            })
-            res.status(201).json({
-                message: "Data User berhasil di tambahkan",
-                data: user
-            })
-        }
+                //insert data ke user
+                const user = await User.create({
+                    full_name,
+                    email,
+                    username,
+                    password,
+                    profil_image_url,
+                    age,
+                    phone_number
+                })
+                res.status(201).json({
+                    message: "Data User berhasil di tambahkan",
+                    user: {email, full_name, username, profil_image_url, age, phone_number}
+                })
+            }
             
         } catch (error) {
             res.status(404).json({
@@ -52,9 +53,7 @@ class UserController{
         const {email,password}= req.body;
         try {
             const user = await User.findOne({
-                where: {
-                    email
-                },
+                where: {email}
             });
 
             //check user with email
@@ -62,35 +61,22 @@ class UserController{
                 res.status(404).json({
                     message: "User Not Found"
                 })
+            }else {
+                //check password
+                const isCorrect = comparePassword(password, user.password);
+                if(!isCorrect){
+                    res.status(404).json({
+                        message: "Invalid Password"
+                    })
+                }else {
+                    const token = generateToken({
+                        id: user.id,
+                        email: user.email
+                    })
+                    res.status(200).json({token})
+                }
+                
             }
-
-            //check password
-            const isCorrect = comparePassword(password, user.password);
-            if(!isCorrect){
-                res.status(404).json({
-                    message: "Invalid Password"
-                })
-            }
-
-            const token = generateToken({
-                id: user.id,
-                email: user.email
-            })
-
-            res.status(200).json({token})
-
-            
-            // if(user){
-            //     const ifCorrect = comparePassword(password, user.password);
-            //     if(ifCorrect){
-            //         const token = generateToken({});
-            //         res.status(200).json({token});
-            //     }else{
-            //         res.status(404).json({message: "password salah"})
-            //     }
-            // }else{
-            //     res.status(404).json({message: `User dengan email:  ${email} tidak ada`})
-            // }
         } catch (error) {
             res.status(404).json({
                 message: error.message
@@ -100,11 +86,12 @@ class UserController{
 
     static async getUser(req,res){
         try {
-            const user = await User.findAll();
-            if (user.length > 0){
+            const AuthenticatedUser = res.locals.user;
+
+            if (AuthenticatedUser){
                 res.status(200).json({
                     message: "Menampilkan Data User : ",
-                    data: user
+                    data: AuthenticatedUser
                 })
             }else{
                 res.status(200).json({
@@ -121,24 +108,51 @@ class UserController{
     }
 
     static async updateUser(req,res){
-        const {full_name, email, username,password,profil_image_url,age,phone_number}=req.body;
+        const {full_name, email, username,profil_image_url,age,phone_number}=req.body;
         try {
-            const user = await User.update({
-                full_name,
-                email,
-                username,
-                password,
-                profil_image_url,
-                age: +age,
-                phone_number
-            }, {
+            const getId = res.locals.user.id;
+            // cek email sudah ada blm
+            const cekEmail = await User.findOne({
                 where: {
-                    id: req.params.id
+                    id : {[Op.ne]: getId},
+                    email
                 }
             });
-            res.status(200).json({
-                message: "Data Berhasil di Update"
-            })
+            
+            //cek username sudah ada blm
+            const cekUsername = await User.findOne({
+                where: {
+                    id : {[Op.ne]: getId},
+                    username
+                }
+            });
+            if(cekEmail){
+                res.status(404).json({
+                    message: "Email Tidak Tersedia!!"
+                })
+            }else if(cekUsername){
+                res.status(404).json({
+                    message: "Username Tidak Tersedia!"
+                })
+            }else{
+                // update data ke user
+                const user = await User.update({
+                    full_name,
+                    email,
+                    username,
+                    profil_image_url,
+                    age,
+                    phone_number
+                }, {
+                    where: {
+                        id: req.params.id
+                    }
+                });
+                res.status(200).json({
+                    message: "Data Berhasil di Update",
+                    user: {email, full_name, username, profil_image_url, age, phone_number}
+                })
+            }
         } catch (error) {
             res.status(404).json({
                 message: error.message
@@ -154,7 +168,7 @@ class UserController{
                 }
             })
             res.status(200).json({
-                message: "Data Berhasil Di Hapus"
+                message: "Akun Anda Berhasil Di Hapus"
             })
         } catch (error) {
             res.status(404).json({

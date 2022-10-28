@@ -1,18 +1,29 @@
-const {Comment} = require('../models')
+const {Comment, Photo, User} = require('../models')
 
 class CommentController{
     static async createComment (req,res){
-        const {UserId, PhotoId, Comments}=req.body;
+        const {PhotoId, Comments}=req.body;
         try {
-            const komen = await Comment.create({ 
-                UserId,
-                PhotoId,
-                Comments
+            const checkPhoto = await Photo.findOne({
+                where: {
+                    id: PhotoId
+                }
             })
-            res.status(201).json({
-                message: "Data User berhasil di tambahkan",
-                data: komen
-            }) 
+            if(checkPhoto){
+                const komen = await Comment.create({ 
+                    UserId : res.locals.user.id,
+                    PhotoId,
+                    Comments
+                })
+                res.status(201).json({
+                    message: "Data User berhasil di tambahkan",
+                    comment: komen
+                }) 
+            } else{
+                res.status(404).json({
+                    message: "Photo Tidak Ada!"
+                })
+            }
         } catch (error) {
             res.status(404).json({
                 message: error.message
@@ -22,14 +33,22 @@ class CommentController{
 
     static async getComment (req,res){
         try {
-            const komen = await Comment.findAll();
+            const komen = await Comment.findAll({
+                include: [{
+                    model: Photo,
+                    attributes: ['id', 'title', 'caption', 'poster_image_url'],
+                    }, {
+                        model: User,
+                        attributes: ['id', 'username', 'profil_image_url', 'phone_number']
+                }]
+            });
             if(komen.length>0){
                 res.status(200).json({
                     message: "Menampilkan Data Comment",
                     data: komen
                 })
             }else{
-                res.status(200).json({
+                res.status(404).json({
                     message: "Tidak Ada Data"
                 })
             }
@@ -42,19 +61,23 @@ class CommentController{
     }
 
     static async updateComment (req,res){
-        const {UserId, PhotoId, Comments}=req.body;
+        const {Comments}=req.body;
         try {
             const komen = await Comment.update({
-                UserId,
-                PhotoId,
                 Comments
             }, {
                 where: {
                     id: req.params.id
                 }
             });
+            const get = await Comment.findOne({
+                where: {
+                    id: req.params.id
+                }
+            });
             res.status(200).json({
-                message: "Data Berhasil di Update"
+                message: "Data Berhasil di Update",
+                comment: get
             })
         } catch (error) {
             res.status(404).json({
