@@ -16,7 +16,6 @@ class CommentController{
                     Comments
                 })
                 res.status(201).json({
-                    message: "Data User berhasil di tambahkan",
                     comment: komen
                 }) 
             } else{
@@ -44,7 +43,6 @@ class CommentController{
             });
             if(komen.length>0){
                 res.status(200).json({
-                    message: "Menampilkan Data Comment",
                     data: komen
                 })
             }else{
@@ -76,7 +74,6 @@ class CommentController{
                 }
             });
             res.status(200).json({
-                message: "Data Berhasil di Update",
                 comment: get
             })
         } catch (error) {
@@ -94,7 +91,7 @@ class CommentController{
                 }
             })
             res.status(200).json({
-                message: "Data Berhasil di Hapus"
+                message: "Komentar Berhasil di Hapus"
             })
         } catch (error) {
             res.status(404).json({

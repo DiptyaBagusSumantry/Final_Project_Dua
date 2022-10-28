@@ -11,12 +11,13 @@ class UserController{
             const getUser = await User.findOne({
                 where: {email}
             });
-
             //cek username sudah ada blm
             const cekUsername = await User.findOne({
                 where: {username}
             });
-
+            // const phone = (phone_number)
+            // console.log(typeof phone_number)
+            // console.log(phone + typeof phone)
             if(getUser){
                 res.status(404).json({
                     message: "Email Already Registered!"
@@ -37,7 +38,6 @@ class UserController{
                     phone_number
                 })
                 res.status(201).json({
-                    message: "Data User berhasil di tambahkan",
                     user: {email, full_name, username, profil_image_url, age, phone_number}
                 })
             }
@@ -149,7 +149,6 @@ class UserController{
                     }
                 });
                 res.status(200).json({
-                    message: "Data Berhasil di Update",
                     user: {email, full_name, username, profil_image_url, age, phone_number}
                 })
             }

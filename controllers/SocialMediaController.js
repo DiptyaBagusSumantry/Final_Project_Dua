@@ -10,7 +10,6 @@ class SocialMediaController{
                 UserId : res.locals.user.id
             })
             res.status(201).json({
-                message: "Data Berhasil di Tambahkan",
                 social_media: sosmed
             })
         } catch (error) {
@@ -64,7 +63,6 @@ class SocialMediaController{
                 }
             })
             res.status(200).json({
-                message: "Social Media Berhasil di Edit",
                 social_media: get
             })
         } catch (error) {
