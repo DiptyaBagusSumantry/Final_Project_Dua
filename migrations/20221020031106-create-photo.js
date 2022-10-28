@@ -13,10 +13,10 @@ module.exports = {
         type: Sequelize.STRING
       },
       caption: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       poster_image_url: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       UserId: {
         type: Sequelize.INTEGER,
