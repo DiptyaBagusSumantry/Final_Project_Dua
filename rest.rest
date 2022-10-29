@@ -64,7 +64,7 @@ token: {{token}}
 ###
 GET http://localhost:2000/photo/getPhoto
 Content-Type: application/json
-token: {{token}}
+# token: {{token}}
 
 //menampilkan foto authorization sesuai user
 ###
