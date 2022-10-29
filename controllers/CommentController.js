@@ -1,11 +1,13 @@
-const {Comment} = require('../models')
+const {Comment, Photo, User} = require('../models')
 
 class CommentController{
     static async createComment (req,res){
         const {UserId, PhotoId, Comments}=req.body;
+        const userId= res.locals.user.id;
+        
         try {
             const komen = await Comment.create({ 
-                UserId,
+                UserId: userId,
                 PhotoId,
                 Comments
             })
@@ -22,7 +24,15 @@ class CommentController{
 
     static async getComment (req,res){
         try {
-            const komen = await Comment.findAll();
+            const komen = await Comment.findAll({
+                include: [{
+                    model: Photo, 
+                    attributes: ['id','title','caption','poster_image_url']
+                },{
+                    model: User,
+                    attributes: ['id', 'username', 'profil_image_url','phone_number']
+                }]
+            });
             if(komen.length>0){
                 res.status(200).json({
                     message: "Menampilkan Data Comment",
@@ -42,11 +52,11 @@ class CommentController{
     }
 
     static async updateComment (req,res){
-        const {UserId, PhotoId, Comments}=req.body;
+        const {Comments}=req.body;
+        const userId = res.locals.user.id;
         try {
             const komen = await Comment.update({
-                UserId,
-                PhotoId,
+                UserId: userId,
                 Comments
             }, {
                 where: {

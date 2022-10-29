@@ -2,14 +2,15 @@ const {Photo,Comment,User} = require('../models');
 
 class PhotoController{
     static async createPhoto (req,res){
-        const {title, caption, poster_image_url, UserId}=req.body;
+        const {title, caption, poster_image_url}=req.body;
+        const userId = res.locals.user.id;
         try {
             //insert data ke Photo
             const user = await Photo.create({
                 title,
                 caption,
                 poster_image_url,
-                UserId
+                UserId: userId 
             })
             res.status(201).json({
                 message: "Data User berhasil di tambahkan",

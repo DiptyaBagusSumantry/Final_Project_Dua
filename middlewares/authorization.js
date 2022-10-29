@@ -1,5 +1,6 @@
-const {User, Photo} =require('../models');
+const {User, Photo, Comment} =require('../models');
 
+//User yang login yang bisa edit data user
 async function authorizationUser(req, res, next) {
     const AuthenticatedUser = res.locals.user;
     const {full_name, email, username,password,profil_image_url,age,phone_number}=req.body;
@@ -13,7 +14,6 @@ async function authorizationUser(req, res, next) {
                 full_name,
                 email,
                 username,
-                password,
                 profil_image_url,
                 age: +age,
                 phone_number
@@ -28,7 +28,6 @@ async function authorizationUser(req, res, next) {
                     message: "User Not Found"
                 });
             }
-            
             next();
             res.status(200).json({
                 message: "Data Berhasil di Edit",
@@ -47,6 +46,7 @@ async function authorizationUser(req, res, next) {
 }
 
 //=========PHOTO===========
+//
 async function authorizationPhoto(req, res, next) {
     const AuthenticatedUser = res.locals.user;
 
@@ -83,4 +83,44 @@ async function authorizationPhoto(req, res, next) {
     }   
 }
 
-module.exports = {authorizationUser,authorizationPhoto};
+//User yang login yang bisa edit data user
+async function authorizationComment(req, res, next) {
+    const AuthenticatedUser = res.locals.user;
+    const {Comments}=req.body;
+    try {
+        const one = await Comment.findOne({where: {id: req.params.id}});
+
+        console.log(one.UserId)
+        if(one.UserId === AuthenticatedUser.id){
+
+            await Comment.update({
+                UserId: AuthenticatedUser.id,
+                Comments
+            }, {
+                where: {
+                    id: req.params.id
+                }
+            });
+            if(!Comment){
+                res.status(404).json({
+                    message: "User Not Found"
+                });
+            }
+            next();
+            res.status(200).json({
+                message: "Data Berhasil di Edit",
+            })
+        }else{
+            res.status(404).json({
+                message: "User dengan email tersebut tidak memiliki akses Edit ke Comment tersebut"
+            })
+        }
+
+    } catch (error) {
+        res.status(404).json({
+            message: error.message
+        });
+    }   
+}
+
+module.exports = {authorizationUser,authorizationPhoto, authorizationComment};

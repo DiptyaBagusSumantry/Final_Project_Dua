@@ -9,6 +9,6 @@ app.use(express.json());
 
 app.use(routes);
 
-app.listen(2000, ()=>{
+app.listen(process.env.PORT || 2000, ()=>{
     console.log("app runing di port 2000");
 });

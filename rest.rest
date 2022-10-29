@@ -1,4 +1,4 @@
-@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiZW1haWwiOiIxMkBnbWFpbC5jb20iLCJpYXQiOjE2NjY4MzYzNzksImV4cCI6MTY2Njg0MzU3OX0.cbK2t2eql8SH9JVL8AatojMHKaWKJ5Mf3wbejZNaZAo
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiIxMjM0QGdtYWlsLmNvbSIsImlhdCI6MTY2NzAxMDk1NCwiZXhwIjoxNjY3MDE4MTU0fQ.cV-_aERwe1GYxeTBkjBnplzWE1gMQji5z-xXWYikQMk
 
 //REGISTER
 ###
@@ -12,7 +12,7 @@ Content-Type: application/json
     "password": "1234",
     "profil_image_url": "aaaaa.com",
     "age": 10,
-    "phone_number": 12   
+    "phone_number": 12345678901234
 }
 
 //LOGIN
@@ -21,7 +21,7 @@ POST http://localhost:2000/users/login
 Content-Type: application/json
 
 {
-    "email": "12@gmail.com",
+    "email": "1234@gmail.com",
     "password": "1234"
 }
 
@@ -39,7 +39,7 @@ token: {{token}}
 {
     "full_name": "Diptya Bagus Sumantry",
     "email": "12@gmail.com",
-      "username": "12",
+    "username": "12",
     "profil_image_url": "profil.com",
     "age": 10,
     "phone_number": 12   
@@ -57,29 +57,33 @@ token: {{token}}
 {
     "title" : "PHOTO KEDUA",
     "caption": " CEKCEK",
-    "poster_image_url": "aaaa.com",
-    "UserId": 3
+    "poster_image_url": "aaaa.com"
 }
 
 ###
-PUT http://localhost:2000/photo/getPhoto/5
+GET http://localhost:2000/photo/getPhoto
+Content-Type: application/json
+token: {{token}}
+
+//menampilkan foto authorization sesuai user
+###
+GET http://localhost:2000/photo/getPhoto/15
 Content-Type: application/json
 token: {{token}}
 
 ###
-PUT  http://localhost:2000/photo/updatePhoto/2
+PUT  http://localhost:2000/photo/updatePhoto/15
 Content-Type: application/json
 token: {{token}}
 
 {
     "title" : "PHOTO KEDUA Sudah di Edit",
     "caption": " CEKCEK",
-    "poster_image_url": "aaaa.com",
-    "UserId": 1
+    "poster_image_url": "aaaa.com"
 }
 
 ###
-DELETE http://localhost:2000/photo/deletePhoto/3
+DELETE http://localhost:2000/photo/deletePhoto/7
 token: {{token}}
 
 //Comment
@@ -89,8 +93,7 @@ Content-Type: application/json
 token: {{token}}
 
 {
-    "UserId": 3,
-    "PhotoId": 5,
+    "PhotoId": 11,
     "Comments": "Cekcek"
 }
 
@@ -99,14 +102,12 @@ GET http://localhost:2000/comment/get
 token: {{token}}
 
 ###
-PUT http://localhost:2000/comment/updateComment/1
+PUT http://localhost:2000/comment/updateComment/13
 Content-Type: application/json
 token: {{token}}
 
 {
-    "UserId": 1,
-    "PhotoId": 1,
-    "Comments": "okeey"
+    "Comments": "Sudah di Edit"
 }
 
 ###

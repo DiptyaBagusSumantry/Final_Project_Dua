@@ -3,7 +3,7 @@ const authentication = require('../middlewares/authentication');
 const UserController = require('../controllers/UserController');
 const PhotoController = require('../controllers/PhotoController');
 const CommentController = require('../controllers/CommentController');
-const {authorizationUser, authorizationPhoto } = require('../middlewares/authorization');
+const {authorizationUser, authorizationPhoto, authorizationComment } = require('../middlewares/authorization');
 const SocialMediaController = require('../controllers/SocialMediaController');
 
 router.post('/users/register', UserController.register);
@@ -17,7 +17,8 @@ router.put('/users/update/:id', authorizationUser);
 router.delete('/users/delete/:id', UserController.deleteUser);
 
 //Photo
-router.use('/photo/getPhoto/:id', authorizationPhoto);
+router.get('/photo/getPhoto/:id', authorizationPhoto);
+router.get('/photo/getPhoto', PhotoController.getPhoto);
 router.post('/photo/createPhoto', PhotoController.createPhoto);
 router.put('/photo/updatePhoto/:id', PhotoController.updatePhoto);
 router.delete('/photo/deletePhoto/:id', PhotoController.deletePhoto);
@@ -25,7 +26,7 @@ router.delete('/photo/deletePhoto/:id', PhotoController.deletePhoto);
 //Comments
 router.post('/comment/createComment', CommentController.createComment);
 router.get('/comment/get', CommentController.getComment);
-router.put('/comment/updateComment/:id', CommentController.updateComment);
+router.put('/comment/updateComment/:id', authorizationComment);
 router.delete('/comment/deleteComment/:id', CommentController.deleteComment);
 
 //Sosmed
