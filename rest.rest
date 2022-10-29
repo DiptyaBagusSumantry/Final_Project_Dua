@@ -7,12 +7,12 @@ Content-Type: application/json
 
 {
     "full_name": "Muhammad Nauval Saiholau",
-    "email": "nauval@gmail.com",
-    "username": "nauval",
+    "email": "nauvassl@gmail.com",
+    "username": "naauval",
     "password": "1234",
     "profil_image_url": "aaaaa.com",
     "age": 10,
-    "phone_number": 12345678901234
+    "phone_number": 123456
 }
 
 //LOGIN
@@ -103,20 +103,12 @@ GET http://localhost:2000/comment/getComment
 token: {{token}}
 
 ###
-<<<<<<< HEAD
-PUT http://localhost:2000/comment/updateComment/13
-=======
 PUT http://localhost:2000/comment/updateComment/14
->>>>>>> 6249b1b70daf50e8d886f49da2cfaaf1430e4892
 Content-Type: application/json
 token: {{token}}
 
 {
-<<<<<<< HEAD
-    "Comments": "Sudah di Edit"
-=======
     "Comments": "Edited"
->>>>>>> 6249b1b70daf50e8d886f49da2cfaaf1430e4892
 }
 
 ###

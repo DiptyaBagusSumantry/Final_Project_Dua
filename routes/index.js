@@ -6,7 +6,7 @@ const CommentController = require('../controllers/CommentController');
 const {authorizationUser, authorizationPhoto, authorizationComment, authorizationSocialMedia } = require('../middlewares/authorization');
 const SocialMediaController = require('../controllers/SocialMediaController');
 
-router.post('/users/register', UserController.register);
+// router.post('/users/register', UserController.register);
 router.post('/users/login', UserController.login);
 
 router.use(authentication)
