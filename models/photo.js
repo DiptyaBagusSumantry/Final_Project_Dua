@@ -18,34 +18,49 @@ module.exports = (sequelize, DataTypes) => {
   Photo.init({
     title: {
       type: DataTypes.STRING,
+      allowNull: false,
       validate: {
-      notEmpty: {
-        args: true,
-        msg: "Tidak Boleh Kosong"
-      },
-    }
+        notNull: {
+          args:true,
+          msg:"Data Tidak Boleh Kosong(Null)!"
+        },
+        notEmpty: {
+          args:true,
+          msg:"Photo Tidak Boleh Kosong"
+        },
+      }
     },
     caption: {
       type: DataTypes.TEXT,
+      allowNull: false,
       validate: {
-      notEmpty: {
-        args:  true,
-        msg: "Harus di Isi"
-      },
-    }
+        notNull: {
+          args:true,
+          msg:"Data Tidak Boleh Kosong(Null)!"
+        },
+        notEmpty: {
+          args:true,
+          msg:"Caption Tidak Boleh Kosong"
+        },
+      }
     },
     poster_image_url: {
       type: DataTypes.TEXT,
+      allowNull: false,
       validate: {
-      isUrl: {
-        args: true,
-        msg: "Harus Memasukan Link"
-      },
-      notEmpty: {
-        args: true,
-        msg: "Harus di isi"
+        isUrl: {
+          args: true,
+          msg: "Harus Memasukan Link"
+        },
+        notNull: {
+          args:true,
+          msg:"Data Tidak Boleh Kosong(Null)!"
+        },
+        notEmpty: {
+          args:true,
+          msg:"Poster Url Tidak Boleh Kosong"
+        },
       }
-    }
     },
 
     UserId: DataTypes.INTEGER

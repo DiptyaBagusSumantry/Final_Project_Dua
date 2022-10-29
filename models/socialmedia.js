@@ -17,24 +17,34 @@ module.exports = (sequelize, DataTypes) => {
   SocialMedia.init({
     name: {
       type: DataTypes.STRING,
+      allowNull: false,
       validate: {
-      notEmpty: {
-        args: true,
-        msg: "Harus di Isi"
-      },
-    }
+        notNull: {
+          args:true,
+          msg:"Data Tidak Boleh Kosong(Null)!"
+        },
+        notEmpty: {
+          args:true,
+          msg:"Nama Tidak Boleh Kosong"
+        },
+      }
     },
     social_media_url: {
       type: DataTypes.STRING,
+      allowNull: false,
       validate: {
       isUrl: {
         args: true,
         msg: " Harus Memasukan Link"
       },
+      notNull: {
+        args:true,
+        msg:"Data Tidak Boleh Kosong(Null)!"
+      },
       notEmpty: {
-        args: true,
-        msg: "Harus di Isi"
-      }
+        args:true,
+        msg:"Social Media Url Tidak Boleh Kosong"
+      },
     }
     },
     UserId: DataTypes.INTEGER

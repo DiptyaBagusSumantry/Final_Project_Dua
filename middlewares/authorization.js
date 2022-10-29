@@ -1,12 +1,16 @@
+<<<<<<< HEAD
 const {User, Photo, Comment} =require('../models');
+=======
+const {User, Photo, Comment, SocialMedia} =require('../models');
+>>>>>>> 6249b1b70daf50e8d886f49da2cfaaf1430e4892
 
 //User yang login yang bisa edit data user
 async function authorizationUser(req, res, next) {
-    const AuthenticatedUser = res.locals.user;
-    const {full_name, email, username,password,profil_image_url,age,phone_number}=req.body;
     try {
+        const AuthenticatedUser = res.locals.user;
         const one = await User.findOne({where: {id: req.params.id}});
 
+<<<<<<< HEAD
 
         if(one.id === AuthenticatedUser.id){
 
@@ -31,7 +35,15 @@ async function authorizationUser(req, res, next) {
             next();
             res.status(200).json({
                 message: "Data Berhasil di Edit",
+=======
+        if(!one){
+            return res.status(404).json({
+                message: "User Tidak Ada!"
+>>>>>>> 6249b1b70daf50e8d886f49da2cfaaf1430e4892
             })
+        }
+        if(one.id === AuthenticatedUser.id){
+            next();
         }else{
             res.status(404).json({
                 message: "User dengan email tersebut tidak memiliki akses ke User tersebut"
@@ -57,19 +69,14 @@ async function authorizationPhoto(req, res, next) {
             }
         });
 
-        // console.log(foto.UserId === AuthenticatedUser.id )
         if(!foto){
-            res.status(404).json({
+            return res.status(404).json({
                 message: "Photo Not Found"
             });
         }
 
         if(foto.UserId === AuthenticatedUser.id){
             next();
-            res.status(200).json({
-                message: "Menampilkan Data Photo Anda",
-                data: foto
-            })
         }else{
             res.status(404).json({
                 message: "User dengan email tersebut tidak memiliki akses ke foto tersebut"
@@ -83,6 +90,7 @@ async function authorizationPhoto(req, res, next) {
     }   
 }
 
+<<<<<<< HEAD
 //User yang login yang bisa edit data user
 async function authorizationComment(req, res, next) {
     const AuthenticatedUser = res.locals.user;
@@ -113,6 +121,30 @@ async function authorizationComment(req, res, next) {
         }else{
             res.status(404).json({
                 message: "User dengan email tersebut tidak memiliki akses Edit ke Comment tersebut"
+=======
+// COMMENT
+async function authorizationComment(req, res, next) {
+    const AuthenticatedUser = res.locals.user;
+
+    try {
+        const comment = await Comment.findOne({
+            where: {
+                id: req.params.id
+            }
+        });
+
+        if(!comment){
+            return res.status(404).json({
+                message: "Comment Not Found"
+            });
+        }
+
+        if(comment.UserId === AuthenticatedUser.id){
+            next();
+        }else{
+            res.status(404).json({
+                message: "User dengan email tersebut tidak memiliki akses ke foto tersebut"
+>>>>>>> 6249b1b70daf50e8d886f49da2cfaaf1430e4892
             })
         }
 
@@ -123,4 +155,39 @@ async function authorizationComment(req, res, next) {
     }   
 }
 
+<<<<<<< HEAD
 module.exports = {authorizationUser,authorizationPhoto, authorizationComment};
+=======
+async function authorizationSocialMedia(req, res, next) {
+    const AuthenticatedUser = res.locals.user;
+
+    try {
+        const sosmed = await SocialMedia.findOne({
+            where: {
+                id: req.params.id
+            }
+        });
+
+        if(!sosmed){
+            return res.status(404).json({
+                message: "Social Media Not Found"
+            });
+        }
+
+        if(sosmed.UserId === AuthenticatedUser.id){
+            next();
+        }else{
+            res.status(404).json({
+                message: "User dengan email tersebut tidak memiliki akses ke foto tersebut"
+            })
+        }
+
+    } catch (error) {
+        res.status(404).json({
+            message: error.message
+        });
+    }   
+}
+
+module.exports = {authorizationUser,authorizationPhoto,authorizationComment,authorizationSocialMedia};
+>>>>>>> 6249b1b70daf50e8d886f49da2cfaaf1430e4892
