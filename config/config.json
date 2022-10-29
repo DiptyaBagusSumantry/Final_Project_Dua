@@ -15,10 +15,11 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
+    "username": "postgres",
+    "password": 1234,
+    "database": "finalProjectDuaProduction",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "port": 8080,
+    "dialect": "postgres"
   }
 }
