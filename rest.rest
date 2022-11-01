@@ -1,4 +1,4 @@
-@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJuYXV2YXNzbEBnbWFpbC5jb20iLCJpYXQiOjE2NjcwMjM2OTUsImV4cCI6MTY2NzAzMDg5NX0.SzUU7J-3xm2zHgtsfkgMvTqkV12rDRtTLtFRt-7Vx8g
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiZW1haWwiOiJuYXV2YXNsQGdtYWlsLmNvbSIsImlhdCI6MTY2NzE5NzI5NiwiZXhwIjoxNjY3MjA0NDk2fQ.hstSWTp0sfTH9yGz4VLt3Lmu6Ul4heCBZTb1ghsu4sc
 
 //REGISTER
 ###
@@ -7,8 +7,8 @@ Content-Type: application/json
 
 {
     "full_name": "Muhammad Nauval Saiholau",
-    "email": "nauvassl@gmail.com",
-    "username": "naauval",
+    "email": "nauvajjsl@gmail.com",
+    "username": "cekcek",
     "password": "1234",
     "profil_image_url": "aaaaa.com",
     "age": 10,
@@ -21,7 +21,7 @@ POST http://localhost:2000/users/login
 Content-Type: application/json
 
 {
-    "email": "nauvassl@gmail.com",
+    "email": "nauvasl@gmail.com",
     "password": "1234"
 }
 
@@ -33,7 +33,7 @@ Content-Type: application/json
 token: {{token}}
 
 ###
-PUT http://localhost:2000/users/update/24
+PUT http://localhost:2000/users/update/5
 Content-Type: application/json
 token: {{token}}
 
@@ -43,7 +43,7 @@ token: {{token}}
     "username": "12",
     "profil_image_url": "profil.com",
     "age": 20,
-    "phone_number": 6289501358797   
+    "phone_number": 62895 
 }
 ###
 DELETE http://localhost:2000/users/delete/24
@@ -64,27 +64,27 @@ token: {{token}}
 ###
 GET http://localhost:2000/photo/getPhoto
 Content-Type: application/json
-# token: {{token}}
+token: {{token}}
 
 //menampilkan foto authorization sesuai user
 ###
-GET http://localhost:2000/photo/getPhoto/15
+GET http://localhost:2000/photo/getPhoto/2
 Content-Type: application/json
 token: {{token}}
 
 ###
-PUT  http://localhost:2000/photo/updatePhoto/15
+PUT  http://localhost:2000/photo/updatePhoto/2
 Content-Type: application/json
 token: {{token}}
 
 {
-    "title" : "PHOTO KEDUA",
-    "caption": " CEKCEK",
+    "title" : "PHOTO KEDUA edt",
+    "caption": " CEKCEK edit",
     "poster_image_url": "aaaa.com"
 }
 
 ###
-DELETE http://localhost:2000/photo/deletePhoto/7
+DELETE http://localhost:2000/photo/deletePhoto/1
 token: {{token}}
 
 //Comment
