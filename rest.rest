@@ -43,10 +43,10 @@ token: {{token}}
     "username": "12",
     "profil_image_url": "profil.com",
     "age": 20,
-    "phone_number": 62895 
+    "phone_number": 08  
 }
 ###
-DELETE http://localhost:2000/users/delete/24
+DELETE http://localhost:2000/users/delete/1
 token: {{token}}
 
 //Photo
@@ -73,13 +73,13 @@ Content-Type: application/json
 token: {{token}}
 
 ###
-PUT  http://localhost:2000/photo/updatePhoto/2
+PUT  http://localhost:2000/photo/updatePhoto/1
 Content-Type: application/json
 token: {{token}}
 
 {
-    "title" : "PHOTO KEDUA edt",
-    "caption": " CEKCEK edit",
+    "title" : "PHOTO KEDUA Edit",
+    "caption": " CEKCEK",
     "poster_image_url": "aaaa.com"
 }
 

@@ -1,4 +1,4 @@
-const {User, Photo, Comment, SocialMedia} =require('../models');
+ const {User, Photo, Comment, SocialMedia} =require('../models');
 
 //User yang login yang bisa edit data user
 async function authorizationUser(req, res, next) {
