@@ -15,15 +15,13 @@ class UserController{
             const cekUsername = await User.findOne({
                 where: {username}
             });
-            // const phone = (phone_number)
-            // console.log(typeof phone_number)
-            // console.log(phone + typeof phone)
+
             if(getUser){
-                res.status(404).json({
+                res.status(400).json({
                     message: "Email Already Registered!"
                 })
             }else if(cekUsername){
-                res.status(404).json({
+                res.status(400).json({
                     message: "Username Already Registered!"
                 })
             }else{
@@ -43,9 +41,8 @@ class UserController{
             }
             
         } catch (error) {
-            console.log(error)
             res.status(404).json({
-                message: error.errors[0].message
+                message: error
             })
         }
     }
