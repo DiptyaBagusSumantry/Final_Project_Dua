@@ -12,3 +12,5 @@ app.use(routes);
 app.listen(port, ()=>{
     console.log("app runing di port http://localhost:"+ port);
 });
+
+module.exports = app

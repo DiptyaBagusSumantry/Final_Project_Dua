@@ -7,8 +7,8 @@ Content-Type: application/json
 
 {
     "full_name": "Muhammad Nauval Saiholau",
-    "email": "nauvajjsl@gmail.com",
-    "username": "cekcek",
+    "email": "",
+    "username": "asdasd",
     "password": "1234",
     "profil_image_url": "aaaaa.com",
     "age": 10,
