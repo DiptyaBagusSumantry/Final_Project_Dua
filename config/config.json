@@ -9,8 +9,8 @@
   },
   "test": {
     "username": "postgres",
-    "password": "1234",
-    "database": "finalProjectDua",
+    "password": 1234,
+    "database": "finalProjectDuaTest",
     "host": "127.0.0.1",
     "port": 8080,
     "dialect": "postgres"
