@@ -5,10 +5,7 @@
   "scripts": {
     "start": "node index.js",
     "nodemon": "./index.js",
-    "test": "jest",
-    "test:watch": "npm run test -- --watch",
-    "db:create:test": "cross-env NODE_ENV=test npx sequelize db:create",
-    "db:migrate:test": "cross-env NODE_ENV=test npx sequelize db:migrate"
+    "migrate": "npx sequelize db:migrate"
   },
   "keywords": [],
   "author": "",
