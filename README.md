@@ -24,16 +24,9 @@ Link Deploy : https://finalprojectdua-production.up.railway.app ( you can acces 
 <img width="631" alt="image" src="https://user-images.githubusercontent.com/112381720/205589935-62fb68da-a297-4797-8fec-9b7d3f435d7f.png">
 
 ### Update Comment ###
+<img width="639" alt="image" src="https://user-images.githubusercontent.com/112381720/205590550-21ac5e22-c18b-407f-8dee-665cf1ae155e.png">
 
-
-
-Tampilan di database postgreeSQL 
-
-### Table User ###
-<img width="632" alt="image" src="https://user-images.githubusercontent.com/112381720/205586639-107c61e8-990b-451f-af58-e4b798248a4e.png">
-
-### Table Photo ###
-<img width="636" alt="image" src="https://user-images.githubusercontent.com/112381720/205587513-cc44b66a-21a0-42c8-b3bc-847ff33c6030.png">
+<img width="631" alt="image" src="https://user-images.githubusercontent.com/112381720/205590607-b75b405d-2943-40fb-904a-57b9072121ff.png">
 
 
 
